@@ -382,4 +382,10 @@ const ConvenientTimeMMValue=await expect(ConvenientTimeMM).toHaveValue(/.+/);
     }
 })
 
+test ("MobileField", async ({page}) =>{
 
+
+    
+
+
+}) 
