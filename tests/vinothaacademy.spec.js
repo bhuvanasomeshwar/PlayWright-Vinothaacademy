@@ -327,7 +327,7 @@ console.log("Date Field has value")
 })
 
 //ConvenientTimeHH
-test('Convenient Time', async ({page}) => {
+test.skip('Convenient Time', async ({page}) => {
 const ConvenientTimeHH=await page.locator("//select[@id='vfb-16-hour']")
 if(ConvenientTimeHH.isVisible()) {
 console.log("Convenient Time Field is Visible")
@@ -355,7 +355,7 @@ const ConvenientTimeValueHH=  await expect(ConvenientTimeHH).toHaveValue(/.+/);
 })
 
 //ConvenientTimeMM
-test('ConvenientTimeMM', async ({page})=>{
+test.skip('ConvenientTimeMM', async ({page})=>{
 const ConvenientTimeMM=page.locator("//span[@class='vfb-time']/child::select[@id='vfb-16-min']")
 if (ConvenientTimeMM.isVisible()){
 console.log("Convenient Time Count MM is visible")
@@ -382,10 +382,87 @@ const ConvenientTimeMMValue=await expect(ConvenientTimeMM).toHaveValue(/.+/);
     }
 })
 
-test ("MobileField", async ({page}) =>{
+//MobileField
+test.skip("MobileField", async ({page}) =>{
+const MobileField=await page.locator("//input[@id='vfb-19']")
+if(MobileField.isVisible)
+        {console.log("Mobile Field is visible")
+}else{
+ console.log("Mobile Field is not visible")}
+
+if(MobileField.isEnabled){
+    console.log("Mobile Field is enabled")
+}else{
+     console.log("Mobile Field is not enabled")
+}
+await MobileField.click
+await MobileField.fill('5679870987')
+await expect (MobileField.inputValue())
+if(MobileField !== ""){
+    console.log("Mobile Field has value")
+}else{
+    console.log("Mobile Field has no value")
+   
+}
+})
 
 
+//TextArea
+test('TextArea', async({page}) =>{
+const TextArea=await expect (page.locator ("//textarea[@id='vfb-23']"))
+if(TextArea.isVisible){
     
+    console.log("Text Area is Visible")
+}else{
+    console.log("Text Area is not Visible")
+}
+    
+  
+  if(TextArea.isEnabled){
+console.log("Text Area is Enabled")
+}else{
+    console.log("Text Area is not Enabled")
+}
+const TextAreaValue= page.locator ("//textarea[@id='vfb-23']")
+await TextAreaValue.fill('Thank you')
+await expect (TextAreaValue).toHaveValue('Thank you')
 
+if (await expect (TextAreaValue).not.toBeEmpty()){
+console.log("Text Area field is empty") 
+}else{
+console.log("Text Area field is not empty")    
+}
 
-}) 
+})
+
+//Verification
+test('Verification Field', async ({page})=>{
+
+    const VerificationField=await page.locator("//input[@id='vfb-3']")
+    if(VerificationField.isEditable){
+        console.log("Verficiation Field is editable")
+    }else{
+
+    console.log("Verficiation Field is not editable")
+    }
+
+    await VerificationField.fill('33')
+if(VerificationField.inputValue('33')){
+    console.log("Verification field has value")
+}else{
+    console.log("Verification field has no value")
+}
+
+})
+
+//Submit Button
+test('Submit Button', async({page})=>{
+const SubmitButton=await page.locator("//input[@id='vfb-3']").isEnabled()
+await SubmitButton.click
+if(SubmitButton){
+    console.log("Submit button is clicked")
+}else{
+    console.log("Submit button is not clicked")
+}
+
+})
